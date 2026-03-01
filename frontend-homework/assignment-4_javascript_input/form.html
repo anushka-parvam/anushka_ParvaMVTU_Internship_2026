@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JavaScript Form Assignment</title>
+</head>
+<body>
+
+    <h2>Student Registration Form</h2>
+
+    <form id="studentForm">
+        <label>Name:</label><br>
+        <input type="text" id="name" required><br><br>
+
+        <label>Email:</label><br>
+        <input type="email" id="email" required><br><br>
+
+        <label>Age:</label><br>
+        <input type="number" id="age" required><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        // Access the form
+        const form = document.getElementById("studentForm");
+
+        // Add event listener
+        form.addEventListener("submit", function(event) {
+
+            // Prevent page reload
+            event.preventDefault();
+
+            // Get input values
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const age = document.getElementById("age").value;
+
+            // Print in console
+            console.log("Student Details:");
+            console.log("Name:", name);
+            console.log("Email:", email);
+            console.log("Age:", age);
+
+        });
+    </script>
+
+</body>
+</html>
