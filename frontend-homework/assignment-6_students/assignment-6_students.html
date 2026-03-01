@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+
+    /* Initial student data */
+    const students = [
+      { id: 1, name: "Rahul", marks: [80, 75, 90] },
+      { id: 2, name: "Sneha", marks: [60, 70, 65] },
+      { id: 3, name: "Arjun", marks: [95, 92, 88] }
+    ];
+
+    /* Task 1: Calculate total marks using reduce() */
+    function calculateTotal(Marr) {
+      return Marr.reduce(function (sum, value) {
+        return sum + value;
+      }, 0);
+    }
+
+    console.log("---- Task 1: Total Marks ----");
+
+    students.forEach(function (student) {
+      console.log(
+        student.name + " Total Marks = " + calculateTotal(student.marks)
+      );
+    });
+
+
+    /* Task 2: Arrow function to calculate average and grade */
+    const calculateAverageAndGrade = (Marr) => {
+      let total = calculateTotal(Marr);
+      let average = total / Marr.length;
+      let grade;
+
+      if (average >= 90) {
+        grade = "A";
+      } else if (average >= 75) {
+        grade = "B";
+      } else if (average >= 60) {
+        grade = "C";
+      } else {
+        grade = "Fail";
+      }
+
+      return { average, grade };
+    };
+
+    console.log("---- Task 2: Average and Grade ----");
+
+    students.forEach(function (student) {
+      let result = calculateAverageAndGrade(student.marks);
+      console.log(student.name + " | Average = " + result.average.toFixed(2) + " | Grade = " + result.grade);
+    });
+
+
+    /* Task 3: Use map() to create result array */
+    console.log("---- Task 3: Student Results ----");
+
+    const results = students.map(function (student) {
+      let totalMarks = calculateTotal(student.marks);
+      let result = calculateAverageAndGrade(student.marks);
+
+      return {
+        name: student.name,
+        total: totalMarks,
+        average: result.average,
+        grade: result.grade
+      };
+    });
+
+    console.log(results);
+
+
+    /* Task 4: Filter students with average > 75 */
+    console.log("---- Task 4: Average Above 75 ----");
+
+    const highScorers = results.filter(function (student) {
+      return student.average > 75;
+    });
+
+    console.log(highScorers);
+
+
+    /* Task 5: Print student details using forEach() */
+    console.log("---- Task 5: Printing All Students ----");
+
+    results.forEach(function (student) {
+      console.log("Name:", student.name, "| Total:", student.total, "| Average:", student.average.toFixed(2), "| Grade:", student.grade);
+    });
+
+
+    /* Task 6: Scope demonstration (var, let, const) */
+    console.log("---- Task 6: Scope Example ----");
+
+    function scopeExample() {
+      var x = 10;
+      let y = 20;
+      const z = 30;
+
+      if (true) {
+        var x = 100;
+        let y = 200;
+        const z = 300;
+
+        console.log("Inside block:");
+        console.log("x =", x);
+        console.log("y =", y);
+        console.log("z =", z);
+      }
+
+      console.log("Outside block:");
+      console.log("x =", x);
+      console.log("y =", y);
+      console.log("z =", z);
+    }
+
+    scopeExample();
+
+    /* Task 7: Primitive vs Reference Types */
+    console.log("---- Task 7: Primitive vs Reference ----");
+
+    // Primitive Type Example
+    let number1 = 50;
+    let number2 = number1;
+
+    number2 = 100;
+
+    console.log("Primitive Type:");
+    console.log("number1 =", number1);
+    console.log("number2 =", number2);
+
+    /*
+    Here number1 and number2 are normal numbers.
+    When we copy number1 into number2, it copies only the value.
+    
+    So when we change number2,number1 will not change.
+    Because both are separate variables.
+    */
+
+    // Reference Type Example
+    let array1 = [1, 2, 3];
+    let array2 = array1;
+
+    array2.push(4);
+
+    console.log("Reference Type:");
+    console.log("array1 =", array1);
+    console.log("array2 =", array2);
+
+    /*
+    Array is a reference type.
+    
+    When we copy array1 into array2,it does not copy values separately.
+    Both variables point to same array.
+    
+    So if we add value in array2,array1 also changes.
+    */
+
+  </script>
+</body>
+
+</html>
